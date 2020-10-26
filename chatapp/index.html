@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mychat</title>
+    <script defer src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <!-- <script defer src="/js/client.js"></script> -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <img class="logo" src="logo.png" alt="">
+        <h1><bold>Welcome to Mychat Application</bold></h1>
+    </nav>
+    
+    <div class="container"></div>
+
+    <div class="send">
+
+        <form action="#" id="send-container">
+            <input type="text" name="messageInp" id="messageInp">
+            <button class="btn" type="submit">Send</button>
+        </form>
+
+    </div>
+
+
+
+
+
+<script>
+        setTimeout(function(){
+            const socket = window.io("http://localhost:8000");
+            const form = document.getElementById('send-container');
+            const messageInput = document.getElementById('messageInp');
+            const messageContainer = document.querySelector(".container");
+            var audio = new Audio('ting.mp3');
+
+            const append = (message,position)=>{
+                const messageElement= document.createElement('div');
+                messageElement.innerText = message;
+                messageElement.classList.add('message')
+                messageElement.classList.add(position);
+                messageContainer.append(messageElement);
+                if(position == 'left'){
+                audio.play();
+                }
+                
+            }
+
+            const name = prompt("enter your name to Join");
+            socket.emit('new-user-joined', name);
+
+            socket.on('user-joined', name =>{
+
+                append(`${name} joined the chat`, 'right')
+            })
+
+            socket.on('receive', data =>{
+                append(`${data.name}: ${data.message}`, 'left')
+            })
+
+            socket.on('left', name =>{
+                append(`${name} left the chat`, 'right')
+            })
+
+
+            form.addEventListener('submit', (e)=>{
+                e.preventDefault();
+                
+                var message = document.getElementById("messageInp").value;
+                append('you: '+ message, 'right');
+                socket.emit('send' , message);
+                messageInput.value = '';
+            })
+        },300)
+
+</script>
+
+
+</body>
+</html>
