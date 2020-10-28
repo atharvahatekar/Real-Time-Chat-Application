@@ -13,9 +13,12 @@ h1{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body{
-    background-image: linear-gradient(rgb(134, 125, 255),rgb(230, 40, 135));
+    background-image: linear-gradient(rgb(255, 255, 255),rgb(96, 86, 240));
+    
     height: 100vh;
+   
 }
+
 
 .container{
     max-width: 955px;
@@ -25,15 +28,18 @@ body{
     padding: 33px;
     overflow-y: auto;
     margin-bottom: 23px;
-    border-radius: 13px;
-
+    border-radius: 20px;
+    background-image: url(/bg_image.jpg) ;
+    
+  
 }
+
 .message{
-    background-color: rgb(199, 192, 192);
+    background-color: rgb(152, 159, 251);
     width: 24%;
     padding: 10px;
     margin: 17px 12px;
-    border: 2px solid black;
+    border: 3px solid rgb(0, 0, 0);
     border-radius: 10px;
 }
 .left{
@@ -64,6 +70,7 @@ body{
     height: 34px;
     font-size: 22px;
     font-family: serif;
+  
 }
 
 .btn{
@@ -73,4 +80,5 @@ body{
     border-radius: 6px;
     height: 34px;
     margin: 0 5px;
+    
 }
