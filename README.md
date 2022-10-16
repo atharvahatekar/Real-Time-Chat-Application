@@ -6,7 +6,7 @@ ___
 
 <b>Results:</b> </b>
 
-<p align="left">
+<p align="center">
 <img height="300" src="chatapp/1.jpeg" />
 </p>
 
